@@ -17,10 +17,10 @@ def Make(request):
     code = ""
     if request.method == "POST":
         if form.is_valid():
-           # NewUrl = form.save(commit=False)
+            NewUrl = form.save(commit=False)
             code = Shortner().issue_token()
-            #NewUrl.code = code
-            #NewUrl.save()
+            NewUrl.code = code
+            NewUrl.save()
         else:
             form = UrlForm()
             short_url = "Invalid URL"
