@@ -46,7 +46,8 @@
       </div>
     </nav>
     {% for n in lista%}
-
+      {{request.user}} 
+      {{n.usuario}}
     <ul class="nav justify-content-center">
        {{n.user}}
       <ul class="nav justify-content-center">

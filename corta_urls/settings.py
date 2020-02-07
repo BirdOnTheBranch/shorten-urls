@@ -123,3 +123,7 @@ STATIC_URL = '/static/'
 #redirect auth
 LOGIN_REDIRECT_URL = 'Make'
 LOGOUT_REDIRECT_URL = 'Make'
+
+#Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
