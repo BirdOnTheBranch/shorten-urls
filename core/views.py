@@ -7,13 +7,14 @@ from .shortner import Shortner
 # Create your views here.
 #le paso la variable <str:code> que declaro en path de urls.py
 def Home(request, code):
-#le paso el modelo y filtro el resultado por la shortt_url
+#le paso el modelo y filtro el resultado por code
     link = get_object_or_404(Link, code=code)
     return redirect(link.url)
 
         
 def Make(request):
     form = UrlForm(request.POST)
+    lista = Link.objects.all()
     code = ""
     if request.method == "POST":
         if form.is_valid():
@@ -25,4 +26,4 @@ def Make(request):
             form = UrlForm()
             short_url = "Invalid URL"
 
-    return render(request, 'core/home.html', {'form':form, 'short_url':code })
+    return render(request, 'core/home.html', {'form':form, 'code':code, 'lista':lista})

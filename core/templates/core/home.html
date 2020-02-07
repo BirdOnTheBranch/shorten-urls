@@ -29,7 +29,7 @@
           </ul>
           <ul class="navbar-nav">
             <!-- Si estamos identidificados -->
-            {% if not request.user.is_authenticated %}
+            {% if not request.user.is_authenticated %} 
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login' %}">Acceder</a>
             </li>
@@ -45,13 +45,27 @@
         </div>
       </div>
     </nav>
+    {% for n in lista%}
+
+    <ul class="nav justify-content-center">
+       {{n.user}}
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{{n.url}}">{{n.url}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{n.code}}">{{n.code}}</a>
+        </li>
+      </ul>
+    </ul>  
+    {% endfor %}
     <!-- Contenido -->
       <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="100%" height="100%" alt="Responsive image">
         <form method="post"> {% csrf_token %} 
           {{ form.as_p }}
-        <button type="submit"  name="button">guardar</button>
+          <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
         </form>
-          <a href="{{short_url}}">{{short_url}}</a>
+          <a href="{{code}}" target="_blank">{{code}}</a>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
