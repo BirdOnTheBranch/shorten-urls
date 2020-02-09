@@ -2,6 +2,6 @@ from django.urls import path
 from core import views
 
 urlpatterns = [
-    path('<str:code>', views.Home, name='Home'),
+    path('corta_urls/<str:code>', views.Home, name='Home'),
     path('', views.Make, name="Make"),
 ]   

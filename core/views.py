@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404    
+from django.shortcuts import render, redirect, get_object_or_404   
+from django.contrib.auth.models import User 
 from .models import Link
 from registration.forms import UrlForm
 from .shortner import Shortner
@@ -14,16 +15,24 @@ def Home(request, code):
         
 def Make(request):
     form = UrlForm(request.POST)
-    lista = Link.objects.all()
     code = ""
+    link = ""
     if request.method == "POST":
         if form.is_valid():
             NewUrl = form.save(commit=False)
             code = Shortner().issue_token()
             NewUrl.code = code
+            if isinstance(request.user, User):
+                NewUrl.usuario = request.user
+                link = Link.objects.filter(usuario=request.user)
             NewUrl.save()
         else:
             form = UrlForm()
-            short_url = "Invalid URL"
+            code = "Invalid URL"
 
-    return render(request, 'core/home.html', {'form':form, 'code':code, 'lista':lista})
+    return render(request, 'core/home.html', {'form':form, 'code':code, 'link':link })
+
+
+
+
+

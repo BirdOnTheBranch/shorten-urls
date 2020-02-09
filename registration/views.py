@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
+from .models import Profile
 
 
 # Create your views here.
