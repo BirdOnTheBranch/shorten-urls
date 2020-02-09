@@ -17,6 +17,8 @@ def Make(request):
     form = UrlForm(request.POST)
     code = ""
     link = ""
+    if request.user.is_authenticated:
+        link = Link.objects.filter(usuario=request.user)
     if request.method == "POST":
         if form.is_valid():
             NewUrl = form.save(commit=False)
@@ -24,7 +26,6 @@ def Make(request):
             NewUrl.code = code
             if isinstance(request.user, User):
                 NewUrl.usuario = request.user
-                link = Link.objects.filter(usuario=request.user)
             NewUrl.save()
         else:
             form = UrlForm()
