@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
   </head>
   <body>
+    <!-- Esta linea quita las etiquetas de la pagina, aunque yo ya las he borrado redefiniendo el metodo init del UrlForms -->
+    <style>.errorlist{color:red;} label{display:none}</style>
     <div class="container">
       <!-- Navegación -->
       <nav class="navbar navbar-expand-lg">
@@ -24,48 +26,46 @@
             </li>
           </ul>
           <ul class="navbar-nav">
-            <!-- Si estamos identidificados -->
+            <!-- Si estamos identidificados y sino -->
             {% if not request.user.is_authenticated %} 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Acceder</a>
+              <a class="nav-link" href="{% url 'login' %}">Acceder</a>  
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
             </li>
             {% else %}
-          </li> 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'profile' %}">{{request.user}}</a>
           </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+          </li> 
             {% endif %}
           </ul>
         </div>
       </div>
       </nav>
-      {% for post in link.code_set.all %}
-       {{post}}
-      {%endfor%}
+      <!-- Logica del form -->
       <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="100%" height="100%" alt="Responsive image">
         <form method="post"> {% csrf_token %} 
-          {{ form.as_p }}
+          {{form.as_p}}
           <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
         </form>
           <a href="{{code}}" target="_blank">{{code}}</a>
-      
-      {% for instance in link %}  
-    <ul class="navbar-nav">  
-      <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" href="{{instance.url}}" target="_blank">{{instance.url}}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{instance.code}}" target="_blank">{{instance.code}}</a>
-        </li>
+      {% for instance in link%}
+       <ul class="navbar-nav">  
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{{instance.url}}" target="_blank">{{instance.url}}</a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="{{instance.code}}" target="_blank">{{instance.code}}</a>
+          </li>
+        </ul>
       </ul>
-    </ul> 
-      {% endfor %}
+      {% endfor %}     
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

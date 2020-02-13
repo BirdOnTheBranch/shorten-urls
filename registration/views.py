@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 from .models import Profile
 
-
 # Create your views here.
 class SignUpView(CreateView):
 #configuramos un form_class para indicarle el formulario que debe mostrar que es el UserCreationForm 
@@ -45,3 +44,4 @@ class ProfileUpdate(UpdateView):
         # recuperar el objeto que se va editar
         profile, created = Profile.objects.get_or_create(user=self.request.user)
         return profile
+    

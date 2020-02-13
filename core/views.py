@@ -20,7 +20,8 @@ def Make(request):
     if request.user.is_authenticated:
         link = Link.objects.filter(usuario=request.user)
     if request.method == "POST":
-        if form.is_valid():
+        #comprueba si el formulario es valido y si el campo "url" del formulario no es None
+        if form.is_valid() and form.data['url']: 
             NewUrl = form.save(commit=False)
             code = Shortner().issue_token()
             NewUrl.code = code
@@ -32,8 +33,4 @@ def Make(request):
             code = "Invalid URL"
 
     return render(request, 'core/home.html', {'form':form, 'code':code, 'link':link })
-
-
-
-
-
+    

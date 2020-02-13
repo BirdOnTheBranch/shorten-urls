@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}{% endblock %}</title>
+    <title></title>
     {% load static %}
     <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i" rel="stylesheet">
@@ -15,6 +15,36 @@
   </head>
   <body>
     <style>.errorlist{color:red;} label{display:none}</style>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+        <a class="navbar-brand" href="{% url 'Make' %}">Acorta urls</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="ned">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Make' %}">Inicio</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <!-- Si estamos identidificados y sino -->
+            {% if not request.user.is_authenticated %} 
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Acceder</a>  
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+            </li>  
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      </nav>
     <main role="main">
     <div class="container">
         <div class="row mt-3">
@@ -32,13 +62,13 @@
                 </div>
                 <!-- Formulario -->
                 <div class="col-md-10">
-                <h3>{{request.user | title}}</h3>
+                <h3>{{request.user |title}}</h3>
                 <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
-                {{ form.bio }}
+                {{ form.notes }}
                 {{ form.link }}
                 <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
                 <p class="mt-3">
-                    Si deseas editar tu email haz clic <a href="">aquí</a>.<br>
+                    Si deseas editar tu email haz clic <a href=""></a>.<br>
                     Y si quieres cambiar tu contraseña haz clic <a href="{% url 'password_change' %}">aquí</a>.
                 </p>
                 <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
