@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404   
 from django.contrib.auth.models import User 
 from .models import Link
-from registration.forms import UrlForm
+from .forms import UrlForm
 from .shortner import Shortner
 
 

@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class LinkQuerySet(models.QuerySet):
-    def from_user(self, user):
-        return self.filter(user=user)
-
 
 class Link(models.Model):
     code = models.TextField(max_length=20, unique=True, verbose_name="codigo")
@@ -19,4 +15,3 @@ class Link(models.Model):
     def __str__(self):
         return self.url
 
-object=LinkQuerySet.as_manager()

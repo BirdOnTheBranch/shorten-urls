@@ -53,15 +53,15 @@
           <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
         </form>
           <a href="{{code}}" target="_blank">{{code}}</a>
-      {% for instance in link%}
+      {% for field in link%}
        <ul class="navbar-nav">  
         <ul class="nav justify-content-center">
           <li class="nav-item">
-            <a class="nav-link" href="{{instance.url}}" target="_blank">{{instance.url}}</a>
+            <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>
           </li>
           <hr>
           <li class="nav-item">
-            <a class="nav-link" href="{{instance.code}}" target="_blank">{{instance.code}}</a>
+            <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
           </li>
         </ul>
       </ul>

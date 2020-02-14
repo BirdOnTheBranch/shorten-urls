@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm
 from .models import Profile
-
+from core.models import Link
 # Create your views here.
 class SignUpView(CreateView):
 #configuramos un form_class para indicarle el formulario que debe mostrar que es el UserCreationForm 
@@ -44,4 +44,9 @@ class ProfileUpdate(UpdateView):
         # recuperar el objeto que se va editar
         profile, created = Profile.objects.get_or_create(user=self.request.user)
         return profile
-    
+        
+        #recuperar las urls y codes del modelo Link, guardadas, para mostrarlas en el perfil
+    def get_context_data(self, **kwargs):
+        context = super(ProfileUpdate, self).get_context_data(**kwargs)
+        context['Link'] = Link.objects.filter(usuario=self.request.user) 
+        return context
