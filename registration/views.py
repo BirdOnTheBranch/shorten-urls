@@ -1,12 +1,14 @@
 from django.contrib.auth.forms import UserCreationForm
-from django import forms 
 from django.views.generic import CreateView, UpdateView
-from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from .forms import ProfileForm
+from django import forms 
 from .models import Profile
 from core.models import Link
+
+
 # Create your views here.
 class SignUpView(CreateView):
 #configuramos un form_class para indicarle el formulario que debe mostrar que es el UserCreationForm 
@@ -18,6 +20,7 @@ class SignUpView(CreateView):
 #y ser redireccionado.
     def get_success_url(self):
             return reverse_lazy('login') + '?register'
+
 
 #Recupero el formulario por defecto
     def get_form(self, form_class=None):
@@ -33,6 +36,7 @@ class SignUpView(CreateView):
         form.fields['password2'].widget = forms.PasswordInput(
             attrs={'class':'form-control mb-2', 'placeholder':'Repite la contraseña'})
         return form
+
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdate(UpdateView):

@@ -1,5 +1,8 @@
 from django import forms
 from .models import Link
+from django.forms import ModelForm
+
+    
 
 class UrlForm(forms.ModelForm):
     class Meta:
