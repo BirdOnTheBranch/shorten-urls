@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'registration',
 ]
 
+    
+    
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -121,8 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #redirect auth
-LOGIN_REDIRECT_URL = 'Make'
-LOGOUT_REDIRECT_URL = 'Make'
+LOGIN_REDIRECT_URL = 'home_view'
+LOGOUT_REDIRECT_URL = 'home_view'
 
 #Media files
 MEDIA_URL = '/media/'

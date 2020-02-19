@@ -9,7 +9,7 @@ class UrlForm(forms.ModelForm):
         model = Link
         fields = ['url']
         widgets = {
-            'url': forms.URLInput(attrs={'class':'form-control mt-3', 'placeholder':'Copia aqui tu enlace',})
+            'url': forms.URLInput(attrs={'class':'form-control mt-3', 'placeholder':'Aqui tu enlace',})
             }
    
     def __init__(self, *args, **kwargs):
@@ -17,5 +17,6 @@ class UrlForm(forms.ModelForm):
         #Elimino el "Este campo es obligatorio que aparece en pantalla"
         for key in self.fields:
             self.fields[key].required = False
+            
         #cambio el campo del form que mostraba la label "URL" por defecto en el tamplate.
-        self.fields['url'].label = ""
+        #self.fields['url'].label = ""

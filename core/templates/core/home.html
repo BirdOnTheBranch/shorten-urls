@@ -10,19 +10,19 @@
   </head>
   <body>
     <!-- Esta linea quita las etiquetas de la pagina, aunque yo ya las he borrado redefiniendo el metodo init del UrlForms -->
-    <style>.errorlist{color:red;} label{display:none}</style>
+   <style>.errorlist{color:red;} label{display:none}</style>
     <div class="container">
       <!-- Navegación -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-        <a class="navbar-brand" href="{% url 'Make' %}">Acorta urls</a>
+        <a class="navbar-brand" href="{% url 'home_view' %}">Acorta urls</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="ned">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'Make' %}">Inicio</a>
+              <a class="nav-link" href="{% url 'home_view' %}">Inicio</a>
             </li>
           </ul>
           <ul class="navbar-nav">
@@ -47,9 +47,10 @@
       </div>
       </nav>
       <!-- Logica del form -->
-      <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="100%" height="100%" alt="Responsive image">
+      <center>
+         <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="875" height="400"  alt="Responsive image">
         <form method="post"> {% csrf_token %} 
-          {{form.as_p}}
+          {{form.as_p }}
           <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
         </form>
           <a href="{{code}}" target="_blank">{{code}}</a>
@@ -65,7 +66,8 @@
           </li>
         </ul>
       </ul>
-      {% endfor %}     
+      {% endfor %}    
+      </center> 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

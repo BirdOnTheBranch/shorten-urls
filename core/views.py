@@ -7,13 +7,13 @@ from .shortner import Shortner
 
 # Create your views here.
 #le paso la variable <str:code> que declaro en path de urls.py
-def Home(request, code):
+def RedirectView(request, code):
 #le paso el modelo y filtro el resultado por code
     link = get_object_or_404(Link, code=code)
     return redirect(link.url)
 
         
-def Make(request):
+def HomeView(request):
     form = UrlForm(request.POST)
     code = ""
     link = ""
