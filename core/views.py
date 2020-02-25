@@ -6,21 +6,21 @@ from .shortner import Shortner
 
 
 # Create your views here.
-#le paso la variable <str:code> que declaro en path de urls.py
 def RedirectView(request, code):
-#le paso el modelo y filtro el resultado por code
+    """ Redirect code to url"""
     link = get_object_or_404(Link, code=code)
     return redirect(link.url)
-
+    #variable code from path, filter code in model Link and redirect to field url
+        
         
 def HomeView(request):
+    """ Create code and render in template with form and urls of request.user"""
     form = UrlForm(request.POST)
     code = ""
     link = ""
     if request.user.is_authenticated:
         link = Link.objects.filter(usuario=request.user)
     if request.method == "POST":
-        #comprueba si el formulario es valido y si el campo "url" del formulario no es None
         if form.is_valid() and form.data['url']: 
             NewUrl = form.save(commit=False)
             code = Shortner().issue_token()
@@ -33,4 +33,4 @@ def HomeView(request):
             code = "Invalid URL"
 
     return render(request, 'core/home.html', {'form':form, 'code':code, 'link':link })
-    
+    #used Url.forms, create code, inject queryset whith urls and code of reques.user in template  

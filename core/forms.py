@@ -14,9 +14,9 @@ class UrlForm(forms.ModelForm):
    
     def __init__(self, *args, **kwargs):
         super(UrlForm, self).__init__(*args, **kwargs)
-        #Elimino el "Este campo es obligatorio que aparece en pantalla"
+        #Elimino los mensajes como "Este campo es obligatorio" que aparece en pantalla.
         for key in self.fields:
             self.fields[key].required = False
-            
-        #cambio el campo del form que mostraba la label "URL" por defecto en el tamplate.
+
+        #cambio el campo del form que mostraba la label "URL" por defecto en el template.
         #self.fields['url'].label = ""
