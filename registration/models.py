@@ -4,9 +4,11 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 def custom_upload_to(instance, filename):
+    """ Method for upload to. This method search and delete old image, then redirect to profiles/filename"""
     old_instance = Profile.objects.get(pk=instance.pk)
     old_instance.avatar.delete()
     return 'profiles/' + filename
+    #filter objets whith pk and delete old image object, then redirect to user profiles/filename 
 
 
 class Profile(models.Model):

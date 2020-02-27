@@ -11,7 +11,7 @@
   <body>
     <!-- Esta linea quita las etiquetas de la pagina, aunque yo ya las he borrado redefiniendo el metodo init del UrlForms -->
    <style>.errorlist{color:red;} label{display:none}</style>
-    <div class="container">
+    <div class="container-fluid">
       <!-- Navegación -->
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -47,27 +47,31 @@
       </div>
       </nav>
       <!-- Logica del form -->
-      <center>
-         <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="875" height="400"  alt="Responsive image">
+      <div class="row">
+        <div class="col">
+          <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="999" height="400"  alt="Responsive image">
         <form method="post"> {% csrf_token %} 
           {{form.as_p }}
           <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
         </form>
           <a href="{{code}}" target="_blank">{{code}}</a>
-      {% for field in link %}
-       <ul class="navbar-nav">  
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
-          </li>
-          <hr>
-          <li class="nav-item">
-            <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
-          </li>
+        </div>
+        <div class="col-5">
+        {% for field in link %}
+        <ul class="navbar-nav">  
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
+            </li>
+            <hr>
+            <li class="nav-item">
+              <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
+            </li>
+          </ul>
         </ul>
-      </ul>
-      {% endfor %}    
-      </center> 
+        {% endfor %}    
+        </div>
+      </div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

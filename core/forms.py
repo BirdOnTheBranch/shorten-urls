@@ -2,7 +2,7 @@ from django import forms
 from .models import Link
 from django.forms import ModelForm
 
-    
+
 
 class UrlForm(forms.ModelForm):
     class Meta:
@@ -13,10 +13,7 @@ class UrlForm(forms.ModelForm):
             }
    
     def __init__(self, *args, **kwargs):
-        super(UrlForm, self).__init__(*args, **kwargs)
-        #Elimino los mensajes como "Este campo es obligatorio" que aparece en pantalla.
+        super().__init__(*args, **kwargs)
+        #del "This field is required" on template.
         for key in self.fields:
             self.fields[key].required = False
-
-        #cambio el campo del form que mostraba la label "URL" por defecto en el template.
-        #self.fields['url'].label = ""
