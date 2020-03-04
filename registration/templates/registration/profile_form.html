@@ -66,13 +66,13 @@
                 <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
                 {{ form.notes }}
                 {{ form.link }}
-                {% for field in Link%}
+                {% for field in Link %}
                 <ul class="navbar-nav">  
                   <ul class="nav justify-content-center">
                     <li class="nav-item">
                       <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
                     </li>
-                    <hr>
+                    <hr>  
                     <li class="nav-item">
                       <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
                     </li>

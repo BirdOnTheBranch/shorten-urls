@@ -57,8 +57,8 @@
           <a href="{{code}}" target="_blank">{{code}}</a>
         </div>
         <div class="col-5">
-        {% for field in link %}
-        <ul class="navbar-nav">  
+        {% for field in link reversed %}
+        <ul class="navbar-nav" >
           <ul class="nav justify-content-center">
             <li class="nav-item">
               <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  

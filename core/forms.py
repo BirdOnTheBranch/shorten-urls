@@ -14,6 +14,7 @@ class UrlForm(forms.ModelForm):
    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        #del "This field is required" on template.
+        #dont show "This field is required" on template.
         for key in self.fields:
             self.fields[key].required = False
+        

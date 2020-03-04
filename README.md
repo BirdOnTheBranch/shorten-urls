@@ -1,12 +1,11 @@
 # corta_urls
 
--Programa para acortar urls.
+-Shorten urls program.
 
-Descripcion:
+Description:
 
-App web desarrollada con Django(Python).
+App web desveloped whith Django(Python).
 
-Utilidad:
+Utility:
 
-La app guarda una url en una base de datos y devuelve un codigo de 5 digitos al azhar
-que sustituye la url introducida. 
+The app save a url in the database, returning a five digit code to the azhar, which replaces the entered url.

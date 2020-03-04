@@ -3,6 +3,7 @@ from .models import Link
 from django.contrib.auth import get_user_model
 
 
+
 class ViewLinks(TestCase):
     def setUp(self):
         """ Create active user """
