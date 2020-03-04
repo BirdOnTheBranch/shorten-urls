@@ -60,13 +60,11 @@
         {% for field in link reversed %}
         <ul class="navbar-nav" >
           <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
-            </li>
-            <hr>
-            <li class="nav-item">
-              <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
-            </li>
+             <li class="nav-item" >
+               <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
+               <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
+             </li>
+            </ul>
           </ul>
         </ul>
         {% endfor %}    
