@@ -2,6 +2,7 @@ import random
 import string
 
 class Shortner:
+    """ Create random code whith five characters """ 
     token_size  = 5
 
     def __init__(self, token_size=5):

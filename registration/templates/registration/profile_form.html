@@ -16,38 +16,38 @@
   <body>
     <style>.errorlist{color:red;} label{display:none}</style>
     <nav class="navbar navbar-expand-lg">
-        <div class="container">
+      <div class="container">
         <a class="navbar-brand" href="{% url 'home_view' %}">Acorta urls</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
+             <span class="navbar-toggler-icon"></span>
+          </button>
         <div class="collapse navbar-collapse" id="ned">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="{% url 'home_view' %}">Inicio</a>
             </li>
           </ul>
-          <ul class="navbar-nav">
+        <ul class="navbar-nav">
             <!-- Si estamos identidificados y sino -->
-            {% if not request.user.is_authenticated %} 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Acceder</a>  
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Salir</a>
-            </li>  
-            {% endif %}
-          </ul>
-        </div>
+          {% if not request.user.is_authenticated %} 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Acceder</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+          </li>  
+          {% endif %}
+        </ul>
       </div>
-      </nav>
-    <main role="main">
+    </div>
+  </nav>
+  <main role="main">
     <div class="container">
-        <div class="row mt-3">
+      <div class="row mt-3">
         <div class="col-md-9 mx-auto mb-5">
             <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
             <div class="row">
@@ -61,34 +61,27 @@
                 {% endif %}
                 </div>
                 <!-- Formulario -->
-                <div class="col-md-10">
+              <div class="col-md-10">
                 <h3>{{request.user |title}}</h3>
-                <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
-                {{ form.notes }}
-                {{ form.link }}
-                {% for field in Link %}
-                <ul class="navbar-nav">  
-                  <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
-                    </li>
-                    <hr>  
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
-                    </li>
-                  </ul>
-                </ul>
-                {% endfor %}
-                <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
+                  <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
                 <p class="mt-3">
-                    Si deseas editar tu email haz clic <a href=""></a>.<br>
                     Y si quieres cambiar tu contraseña haz clic <a href="{% url 'password_change' %}">aquí</a>.
                 </p>
-                <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
+                  <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
+                  <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
+                    {{ form.notes }}
+                  {% for field in Link %}
+                <div class="list-group">
+                  <br>
+                  <a class="list-group-item" href="{{field.url}}" target="_blank">URL : {{field.url}}</a>
+                  <a class="list-group-item" href="{{field.code}}" target="_blank">CODE : {{field.code}}</a>
                 </div>
-            </div>
+                {% endfor %}
+              </div>
             </form>
+          </div>
         </div>
-        </div>
-    </div>
+      </div>
     </main>
+  </body>
+</html> 

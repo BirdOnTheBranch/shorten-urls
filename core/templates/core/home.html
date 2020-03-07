@@ -10,66 +10,62 @@
   </head>
   <body>
     <!-- Esta linea quita las etiquetas de la pagina, aunque yo ya las he borrado redefiniendo el metodo init del UrlForms -->
-   <style>.errorlist{color:red;} label{display:none}</style>
+   <style>.errorlist{color:red;} label{display:none} </style>
     <div class="container-fluid">
       <!-- Navegación -->
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg >
         <div class="container">
         <a class="navbar-brand" href="{% url 'home_view' %}">Acorta urls</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="ned">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home_view' %}">Inicio</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-            <!-- Si estamos identidificados y sino -->
-            {% if not request.user.is_authenticated %} 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Acceder</a>  
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
-            </li>
-            {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'profile' %}">{{request.user}}</a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Salir</a>
-          </li> 
-            {% endif %}
-          </ul>
+          <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
+              <!-- Si estamos identidificados y sino -->
+              {% if not request.user.is_authenticated %} 
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Acceder</a>  
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'signup' %}">Registrarse</a>
+                </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Mi perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+              </li> 
+              {% endif %}
+            </ul>
         </div>
-      </div>
       </nav>
       <!-- Logica del form -->
       <div class="row">
         <div class="col">
           <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="999" height="400"  alt="Responsive image">
-        <form method="post"> {% csrf_token %} 
+        <form method="post" enctype="multipart/form-data" > {% csrf_token %} 
           {{form.as_p }}
-          <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
+            <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
         </form>
-          <a href="{{code}}" target="_blank">{{code}}</a>
+            <a href="{{code}}" target="_blank" ><h2>{{code}}</h2></a>
         </div>
-        <div class="col-5">
+        <div class="col-5">  
+          <br>
+        {% if request.user.is_authenticated %}
+          <h2>{{request.user | title }} |  your urls and codes </h2>
         {% for field in link reversed %}
-        <ul class="navbar-nav" >
-          <ul class="nav justify-content-center">
-             <li class="nav-item" >
-               <a class="nav-link" href="{{field.url}}" target="_blank">{{field.url}}</a>  
-               <a class="nav-link" href="{{field.code}}" target="_blank">{{field.code}}</a>
-             </li>
-            </ul>
-          </ul>
-        </ul>
-        {% endfor %}    
-        </div>
-      </div>
+          <div class="list-group">
+              <br>
+              <a class="list-group-item" href="{{field.url}}" target="_blank">URL : {{field.url}}</a>
+              <a class="list-group-item" href="{{field.code}}" target="_blank">CODE : {{field.code}}</a>
+          </div>
+        {% endfor %}
+        {% else %}  
+          <h2>Hi. If you want to have a profile<br> with your previously saved links,<br>
+          register.</h2></p>
+        {% endif %} 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

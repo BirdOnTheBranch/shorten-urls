@@ -1,8 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404   
+from django.shortcuts import render, redirect, get_object_or_404  
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from core import views
 from .models import Link
 from .forms import UrlForm
 from .shortner import Shortner
+from django.views.generic.list import ListView
+
 
 
 # Create your views here.
