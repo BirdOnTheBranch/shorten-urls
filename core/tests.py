@@ -20,7 +20,7 @@ class ViewLinks(TestCase):
     
     def test_invalid_url(self):
         """ Returns for "/invalid" url, error 404 """
-        user_request = self.client.post('/invalid/', data={'text': ''})
+        user_request = self.client.post('/invalid/')
         self.assertEqual(user_request.status_code, 404)
        
 

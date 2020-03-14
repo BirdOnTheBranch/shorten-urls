@@ -23,7 +23,7 @@ def HomeView(request):
     code = ""
     link = ""
     if request.user.is_authenticated:
-        link = Link.objects.filter(usuario=request.user)
+        link = Link.objects.filter(usuario=request.user )
     if request.method == "POST":
         if form.is_valid() and form.data['url']: 
             NewUrl = form.save(commit=False)
