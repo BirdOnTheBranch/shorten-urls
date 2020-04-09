@@ -42,30 +42,29 @@
         </div>
       </nav>
       <!-- Logica del form -->
-      <div class="row">
-        <div class="col">
-          <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="999" height="400"  alt="Responsive image">
-        <form method="post" enctype="multipart/form-data" > {% csrf_token %} 
-          {{form.as_p }}
-            <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
-        </form>
-            <a href="{{code}}" target="_blank" ><h2>{{code}}</h2></a>
+      <div class="row d-flex justify-content-center">
+        <div class="row-8">
+          <div class="col-11">
+            <img src="{% static 'core/img/corta_url.png' %}" class="img-fluid" width="1000" alt="Responsive image">
+          <form method="post" enctype="multipart/form-data" > {% csrf_token %} 
+            {{form.as_p }}
+              <button type="submit" class="btn btn-secondary btn-lg btn-block">guardar</button>
+          </form>
+              <a href="{{code}}" target="_blank" ><h2>{{code}}</h2></a>
+            <br>
+          {% if request.user.is_authenticated %}
+            <h5>{{request.user | title }} |  Tus urls y códigos.</h5>
+          {% for field in link reversed %}
+            <div class="list-group">
+                <br>
+                <a class="list-group-item" href="{{field.url}}" target="_blank">URL : {{field.url}}</a>
+                <a class="list-group-item" href="{{field.code}}" target="_blank">CODE : {{field.code}}</a>
+            </div>
+          {% endfor %}
+          {% else %}  
+            <p>Hola. Si quieres tener un perfil con tus urls y códigos guardados, registrate.</p>
+          {% endif %} 
         </div>
-        <div class="col-5">  
-          <br>
-        {% if request.user.is_authenticated %}
-          <h2>{{request.user | title }} |  your urls and codes </h2>
-        {% for field in link reversed %}
-          <div class="list-group">
-              <br>
-              <a class="list-group-item" href="{{field.url}}" target="_blank">URL : {{field.url}}</a>
-              <a class="list-group-item" href="{{field.code}}" target="_blank">CODE : {{field.code}}</a>
-          </div>
-        {% endfor %}
-        {% else %}  
-          <h2>Hi. If you want a profile<br> with your saved links,<br>
-          register.</h2></p>
-        {% endif %} 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
