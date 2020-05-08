@@ -1,27 +1,27 @@
-#Corta_urls 
+# Shorten_urls 
 &nbsp;
 &nbsp;
 
->*Shorten urls program*.
+>*Program to shorten urls *.
 
-####Description:
+#### Description:
 
   -App web developed whith Django (Python).
 
 &nbsp;
 
-####Utility:
+#### Utility:
 
   * The app save a url in database and returning a five digit code to the azhar, which replaces the entered url. 
   * The user have the possibility to registered and had a profile page where you will can to stock her urls
 &nbsp;
 ---
 
-##Setup
+## Setup
 &nbsp;
 *Ensure you have Docker installed in your system.*
 
-#####First we build the docker-compose
+##### First we build the docker-compose
 
 
 >$ docker-compose build  
@@ -41,7 +41,7 @@ Successfully tagged corta_urls_web:latest
 ...
 ```
 
-#####Second, run the server sqlite3 in background, to conect your host at django-server.
+##### Second, run the server sqlite3 in background, to conect your host at django-server.
 
 
 `$ docker-compose up -d`
@@ -55,7 +55,7 @@ Successfully tagged corta_urls_web:latest
 
 ---
 
-##Starting the application
+## Starting the application
 &nbsp;
 
 **To run the application, open a terminal and call `docker-compose run` migrate your data base and using the port `0.0.0.0:8000`.**
@@ -78,13 +78,13 @@ Quit the server with CONTROL-C.
 ...
 ```
 &nbsp;
-#####welcome to corta_urls.
+##### welcome to corta_urls.
 &nbsp;
 
 --- 
 
 
-##Integration tests
+## Integration tests
 &nbsp;
 
 **Tests to verify that the components work as intended**
