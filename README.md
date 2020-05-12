@@ -45,7 +45,7 @@ Successfully tagged corta_urls_web:latest
 ...
 ```
 
-&nbsp;
+
 
 ##### Second, run the server sqlite3 in background, to conect your host at django-server.
 
@@ -84,7 +84,7 @@ Quit the server with CONTROL-C.
 ```
 
 &nbsp;
-### welcome to corta_urls.
+**welcome to corta_urls.**
 &nbsp;
 
 --- 
@@ -98,7 +98,9 @@ Quit the server with CONTROL-C.
 * Tests to check individual components of the application.
 * Covers scenarios of fetching correct data from the app.
 * Also covers scenarios of failure when reaching the app.
+
 &nbsp;
+
 ---
 **Built with:**
 * [Python 3](https://www.python.org/download/releases/3.0/ "Python 3") - v3.7.2
